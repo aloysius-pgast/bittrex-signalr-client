@@ -1,0 +1,20 @@
+{
+  "name": "bittrex-signalr-client",
+  "version": "1.0.0",
+  "description": "Node.js implementation of SignalR protocol tailored for Bittrex exchange",
+  "main": "lib/client.js",
+  "scripts": {},
+  "author": "Aloysius Pendergast <aloysius.pgast@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/aloysius.pgast/bittrex-signalr-client"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "lodash": "^4.17.4",
+    "request": "^2.83.0",
+    "retry": "^0.10.1",
+    "ws": "^3.2.0"
+  }
+}
