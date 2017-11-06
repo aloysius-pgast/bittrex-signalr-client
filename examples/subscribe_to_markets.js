@@ -33,7 +33,7 @@ setTimeout(function(){
     client.subscribeToMarkets(['BTC-NEO'], true);
 }, 30000);
 
-// disconnect client after 45s
+// disconnect client after 60s
 setTimeout(function(){
     console.log('=== Disconnecting...');
     client.disconnect();

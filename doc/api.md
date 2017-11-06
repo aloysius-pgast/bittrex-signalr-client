@@ -16,7 +16,9 @@ Constructor takes an object as argument with following available properties (all
 
 # Reconnection
 
-Method _reconnect()_ should be called upon receiving _terminated_ event
+Method _reconnect(immediate)_ should be called upon receiving _terminated_ event
+
+* _immediate_ : boolean, if _true_ connection will be reconnected immediately, otherwise delay will be a specified in constructor (_retryDelay_) (default = _false_)
 
 # Subscriptions methods
 
