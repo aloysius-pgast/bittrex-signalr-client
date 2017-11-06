@@ -10,15 +10,15 @@ Constructor takes an object as argument with following available properties (all
 
 * _retryCount.start_ : _integer_, number of retries in case _start_ step fails (default = _1_) (can be set to string _always_ to retry indefinitely)
 
-* _reconnectAfterUnsubscribingFromMarkets.reconnect_ : _boolean_. If _true_, currenct SignalR connection will be reconnected when unsubscribing from markets (since Bittrex does not allow any other way to unsubscribe). If _false_ library will keep receiving data for unsubscribed markets (which can consume unecessary bandwidth) (default = _true_)
+* _reconnectAfterUnsubscribingFromMarkets.reconnect_ : _boolean_. If _true_, current _SignalR_ connection will be reconnected when unsubscribing from markets (since _Bittrex_ does not allow any other way to unsubscribe). If _false_ library will keep receiving data for unsubscribed markets (which could consume unnecessary bandwidth in the long run) (default = _true_)
 
-* _reconnectAfterUnsubscribingFromMarkets.after_ : integer, indicates after how many unsubscriptions SignalR connection should be reconnected (default = _1_)
+* _reconnectAfterUnsubscribingFromMarkets.after_ : integer, indicates after how many un-subscriptions _SignalR_ connection should be reconnected (default = _1_)
 
 # Reconnection
 
 Method _reconnect(immediate)_ should be called upon receiving _terminated_ event
 
-* _immediate_ : boolean, if _true_ connection will be reconnected immediately, otherwise delay will be a specified in constructor (_retryDelay_) (default = _false_)
+* _immediate_ : boolean, if _true_ connection will be reconnected immediately, otherwise delay will be as specified in constructor (_retryDelay_) (default = _false_)
 
 # Subscriptions methods
 
@@ -84,7 +84,7 @@ Method _resyncOrderBooks(pairs)_
 
 ### connected
 
-When SignalRConnection connection is connected/reconnected. No action should be taken by client.
+When _SignalR_ connection connection is connected/reconnected. No action should be taken by client.
 
 ```
 {
@@ -92,11 +92,11 @@ When SignalRConnection connection is connected/reconnected. No action should be 
 }
 ```
 
-* _connectionId_ : id of SignalR connection
+* _connectionId_ : id of _SignalR_ connection
 
 ### disconnected
 
-When SignalRConnection has been closed by exchange. Reconnection will be automatic, no action should be taken by client.
+When _SignalR_ connection has been closed by exchange. Reconnection will be automatic, no action should be taken by client.
 
 ```
 {
@@ -106,7 +106,7 @@ When SignalRConnection has been closed by exchange. Reconnection will be automat
 }
 ```
 
-* _connectionId_ : id of SignalR connection
+* _connectionId_ : id of _SignalR_ connection
 
 * _code_ : disconnection code
 
@@ -272,4 +272,4 @@ _Example_
 }
 ```
 
-_NB_ : Bittrex does not always provide _id_ property for trades so you should consider it as being optional (ie: don't rely on it)
+_NB_ : _Bittrex_ does not always provide _id_ property for trades so you should consider it as being optional (ie: don't rely on it)
