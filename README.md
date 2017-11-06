@@ -6,6 +6,7 @@ Node.js implementation of SignalR protocol tailored for Bittrex exchange
 
 * Implement methods for subscribing to tickers & markets (order books & trades)
 * Handle automatic reconnection in (I think !) every possible scenario
+* Handle CloudFare's anti-ddos page using [cloudscaper](https://www.npmjs.com/package/cloudscraper/)
 
 ## Installation
 
