@@ -4,7 +4,9 @@ Constructor takes an object as argument with following available properties (all
 
 * _retryDelay_ : _integer_, delay in milliseconds before reconnecting upon disconnection or connection failure (default = _10000_)
 
-* _retryCount.negotiate_ : _integer_, number of retries in case _negotiate_ step fails (default = _11_) (can be set to string _always_ to retry indefinitely) * _retryCount.connect : _integer_, number of retries in case _connect_ step fails (default = _1_) (can be set to string _always_ to retry indefinitely)
+* _retryCount.negotiate_ : _integer_, number of retries in case _negotiate_ step fails (default = _11_) (can be set to string _always_ to retry indefinitely)
+
+* _retryCount.connect_ : _integer_, number of retries in case _connect_ step fails (default = _1_) (can be set to string _always_ to retry indefinitely)
 
 * _retryCount.start_ : _integer_, number of retries in case _start_ step fails (default = _1_) (can be set to string _always_ to retry indefinitely)
 
@@ -88,7 +90,7 @@ When SignalRConnection connection is connected/reconnected. No action should be 
 }
 ```
 
-* connectionId : id of SignalR connection
+* _connectionId_ : id of SignalR connection
 
 ### disconnected
 
@@ -102,9 +104,11 @@ When SignalRConnection has been closed by exchange. Reconnection will be automat
 }
 ```
 
-* connectionId : id of SignalR connection
-* code: disconnection code
-* reason : disconnection reason
+* _connectionId_ : id of SignalR connection
+
+* _code_ : disconnection code
+
+* _reason_ : disconnection reason
 
 ### connectionError
 
@@ -118,11 +122,11 @@ When a connection/reconnection error has occurred. Library will automatically re
 }
 ```
 
-* step : connection step (negotiate|start|connect)
+* _step_ : connection step (negotiate|start|connect)
 
-* attempts : number of attempts to connect
+* _attempts_ : number of attempts to connect
 
-* error : the connection error which occurred
+* _error_ : the connection error which occurred
 
 ### terminated
 
