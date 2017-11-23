@@ -269,6 +269,7 @@ _Example_
             "orderType":"buy",
             "timestamp":1509986924.553
         }
+    ]
 }
 ```
 
