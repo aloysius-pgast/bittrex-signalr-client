@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.5]
+* Use _Big.js_ for floating point arithmetic
+
 ## [v1.0.4]
 * Change _transport_ from _serverSentEvents_ to _webSockets_ for _abort_ step
 
