@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.6]
+* Take UTC offset into account when parsing DateTime strings returned by Bittrex
+
 ## [v1.0.5]
 * Use _Big.js_ for floating point arithmetic
 
