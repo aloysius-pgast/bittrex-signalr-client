@@ -22,9 +22,15 @@ Method _reconnect(immediate)_ should be called upon receiving _terminated_ event
 
 # Subscriptions methods
 
+## Subscribe to all tickers
+
+Used to subscribe to all existing tickers at once
+
+Method _subscribeToAllTickers()_
+
 ## Subscribe to tickers
 
-Used to subscribe to tickers for a list of pairs
+Used to subscribe to tickers for a list of pairs (will be ignored if a subscription to _all_ tickers exists)
 
 Method _subscribeToTickers(pairs, reset)_
 
@@ -34,7 +40,7 @@ Method _subscribeToTickers(pairs, reset)_
 
 ## Unsubscribe from tickers
 
-Used to unsubscribe from tickers for a list of pairs
+Used to unsubscribe from tickers for a list of pairs (will be ignored if a subscription to _all_ tickers exists)
 
 Method _unsubscribeFromTickers(pairs)_
 

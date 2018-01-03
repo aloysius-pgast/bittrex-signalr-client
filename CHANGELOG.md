@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.7]
+* Method _subscribeToAllTickers_ was added to subscribe to all tickers at once
+
 ## [v1.0.6]
 * Take UTC offset into account when parsing DateTime strings returned by Bittrex
 
