@@ -30,7 +30,7 @@ If a watchdog is enabled and _timeout_ is detected, _timeout_ event will be trig
 
 Watchdog will check for timeout every _timeout / 10_. This means that will be detected between _timeout_ ms and _timeout ms + 10%_.
 
-Do not set timeout value *too low* : setting value to _5 min_ will ensure timeout will be detected between _5 min_ and _5 min 50 sec_, while checking for timeout _every 50 seconds_
+Do not set timeout value *too low* : setting value to _5 min_ will ensure timeout will be detected between _5 min_ and _5 min 30 sec_, while checking for timeout _every 30 seconds_
 
 # Reconnection
 
@@ -169,6 +169,24 @@ When connection failed after last connection retry. This is a final event, libra
 ### timeout
 
 When watchdog detected that Bittrex stopped sending data. If _watchdog_ was configured to reconnect automatically upon detecting timeout, no action is required on client side
+
+```
+{
+    "connectionId":string,
+    "dataType":string,
+    "lastTimestamp":integer
+}
+```
+
+* _connectionId_ : id of _SignalR_ connection
+
+* _dataType_ : one of (_tickers_,_markets_)
+
+* _lastTimestamp_ : unix timestamp (in ms) of last received data
+
+### watchdog
+
+Will be emitted everytime watchdog checks if a timeout occurred
 
 ```
 {
