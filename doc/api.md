@@ -28,6 +28,10 @@ When watchdog is enabled, it will only be activated if subscriptions exist. If c
 
 If a watchdog is enabled and _timeout_ is detected, _timeout_ event will be triggered. If _reconnect_ is _false_ for this watchdog, client will need to reconnect manually
 
+Watchdog will check for timeout every _timeout / 10_. This means that will be detected between _timeout_ ms and _timeout ms + 10%_.
+
+Do not set timeout value *too low* : setting value to _5 min_ will ensure timeout will be detected between _5 min_ and _5 min 50 sec_, while checking for timeout _every 50 seconds_
+
 # Reconnection
 
 Method _reconnect(immediate)_ should be called upon receiving _terminated_ event
