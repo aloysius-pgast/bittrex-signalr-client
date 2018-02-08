@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.8]
+* Watchdog was added to reconnect upon detecting timeout (ie: when _Bittrex_ stopped sending data)
+
 ## [v1.0.7]
 * Method _subscribeToAllTickers_ was added to subscribe to all tickers at once
 

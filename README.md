@@ -12,6 +12,8 @@ This is a work in progress mostly meant to be integrated in [Crypto Exchanges Ga
 
 * Handle automatic reconnection in (I think !) every possible scenario
 
+* Implements a watchdog to detect when _Bittrex_ stops sending data (default to 30min, automatic reconnection)
+
 * Handle CloudFare's anti-ddos page using [cloudscaper](https://www.npmjs.com/package/cloudscraper/)
 
 ## Installation

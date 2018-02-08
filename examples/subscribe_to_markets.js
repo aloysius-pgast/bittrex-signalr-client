@@ -3,7 +3,14 @@ const util = require('util');
 const SignalRClient = require('../lib/client.js');
 let client = new SignalRClient({
     // websocket will be automatically reconnected if server does not respond to ping after 10s
-    pingTimeout:10000
+    pingTimeout:10000,
+    watchdog:{
+        // automatically reconnect if we don't receive markets data for 30min (this is the default)
+        markets:{
+            timeout:1800000,
+            reconnect:true
+        }
+    }
 });
 
 //-- event handlers

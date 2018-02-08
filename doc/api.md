@@ -14,6 +14,20 @@ Constructor takes an object as argument with following available properties (all
 
 * _reconnectAfterUnsubscribingFromMarkets.after_ : integer, indicates after how many un-subscriptions _SignalR_ connection should be reconnected (default = _1_)
 
+* _watchdog.tickers.timeout_ : _integer_, delay in milliseconds after which we should consider timeout if no _tickers_ data was received. (default = _1800000_, 30min) (set to _0_ to disable)
+
+* _watchdog.tickers.reconnect_ : _boolean_, if true a reconnection will occur upon detecting timeout (default = _true_)
+
+* _watchdog.markets.timeout_ : _integer_, delay in milliseconds after which we should consider timeout if no _markets_ data was received. (default = _1800000_, 30min) (set to _0_ to disable)
+
+* _watchdog.markets.reconnect_ : _boolean_, if true a reconnection will occur upon detecting timeout (default = _true_)
+
+# Watchdog
+
+When watchdog is enabled, it will only be activated if subscriptions exist. If client unsubscribe from all _markets_ or all _tickers_, it will be automatically disabled and re-enabled once new subscriptions exist
+
+If a watchdog is enabled and _timeout_ is detected, _timeout_ event will be triggered. If _reconnect_ is _false_ for this watchdog, client will need to reconnect manually
+
 # Reconnection
 
 Method _reconnect(immediate)_ should be called upon receiving _terminated_ event
@@ -147,6 +161,24 @@ When connection failed after last connection retry. This is a final event, libra
     "error":object
 }
 ```
+
+### timeout
+
+When watchdog detected that Bittrex stopped sending data. If _watchdog_ was configured to reconnect automatically upon detecting timeout, no action is required on client side
+
+```
+{
+    "connectionId":string,
+    "dataType":string,
+    "lastTimestamp":integer
+}
+```
+
+* _connectionId_ : id of _SignalR_ connection
+
+* _dataType_ : one of (_tickers_,_markets_)
+
+* _lastTimestamp_ : unix timestamp (in ms) of last received data
 
 ## Tickers & markets events
 
