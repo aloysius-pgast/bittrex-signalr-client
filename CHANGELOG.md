@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.9]
+* Change default User-Agent & add extra headers to bypass CloudFare protection
+
 ## [v1.0.8]
 * Watchdog was added to reconnect upon detecting timeout (ie: when _Bittrex_ stopped sending data)
 
