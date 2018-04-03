@@ -2,6 +2,8 @@
 
 Constructor takes an object as argument with following available properties (all optional)
 
+* _legacy_ : _boolean_, if _false_ will connect to Bittrex beta WSS endpoint (default = _true_)
+
 * _retryDelay_ : _integer_, delay in milliseconds before reconnecting upon disconnection or connection failure (default = _10000_)
 
 * _retryCount.negotiate_ : _integer_, number of retries in case _negotiate_ step fails (default = _11_) (can be set to string _always_ to retry indefinitely)

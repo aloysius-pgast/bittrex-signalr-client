@@ -16,6 +16,8 @@ This is a work in progress mostly meant to be integrated in [Crypto Exchanges Ga
 
 * Handle CloudFare's anti-ddos page using [cloudscaper](https://www.npmjs.com/package/cloudscraper/)
 
+* Support for Bittrex Beta API (in progress)
+
 ## Installation
 
 ```

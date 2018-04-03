@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.0]
+* Support for Bittrex Beta API
+
 ## [v1.0.9]
 * Change default User-Agent & add extra headers to bypass CloudFare protection
 
