@@ -5,15 +5,16 @@ const SignalRClient = require('../lib/client.js');
 let client = new SignalRClient({
     // websocket will be automatically reconnected if server does not respond to ping after 10s
     pingTimeout:10000,
-    // subscribing to orders is not supported by legacy endpoint (we need to use the beta API)
-    legacy:false,
+    // NB: you need to provide correct API key & secret above to be able to subscribe to orders
     auth:{
         key:"abcdef",
         secret: "123456"
-    }
+    },
+    // use cloud scraper to bypass Cloud Fare (default)
+    useCloudScraper:true,
+    // subscribing to orders is not supported by legacy endpoint (we need to use the beta API)
+    legacy:false
 });
-
-// NB: you need to provide correct API key & secret above to be able to subscribe to orders
 
 //-- event handlers
 client.on('order', function(data){
