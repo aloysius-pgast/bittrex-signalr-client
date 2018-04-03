@@ -1,7 +1,8 @@
 # Change Log
 
 ## [v1.1.0]
-* Support for Bittrex Beta API
+* Support for Bittrex Beta API (tickers, order books, trades & user orders)
+* Possibility to disable Cloud Scraper
 
 ## [v1.0.9]
 * Change default User-Agent & add extra headers to bypass CloudFare protection
