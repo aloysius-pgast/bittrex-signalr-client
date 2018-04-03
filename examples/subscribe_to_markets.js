@@ -10,7 +10,11 @@ let client = new SignalRClient({
             timeout:1800000,
             reconnect:true
         }
-    }
+    },
+    // use cloud scraper to bypass Cloud Fare (default)
+    useCloudScraper:true,
+    // use legacy endpoint (default) (set to false to use beta endpoint)
+    legacy:true
 });
 
 //-- event handlers
@@ -32,17 +36,17 @@ client.subscribeToMarkets(['USDT-BTC']);
 setTimeout(function(){
     console.log("=== Adding subscription for USDT-ETH & BTC-ETH pairs");
     client.subscribeToMarkets(['USDT-ETH','BTC-ETH']);
-}, 15000);
+}, 30000);
 
 // add subscription for 'BTC-NEO', unsubscribe from previous pairs after 30s
 setTimeout(function(){
     console.log("=== Setting BTC-NEO as the only pair we want to subscribe to");
     client.subscribeToMarkets(['BTC-NEO'], true);
-}, 30000);
+}, 60000);
 
 // disconnect client after 60s
 setTimeout(function(){
     console.log('=== Disconnecting...');
     client.disconnect();
     process.exit(0);
-}, 60000);
+}, 120000);

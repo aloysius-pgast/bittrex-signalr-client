@@ -2,6 +2,14 @@
 
 Constructor takes an object as argument with following available properties (all optional)
 
+* _legacy_ : _boolean_, if _false_ will connect to Bittrex beta WSS endpoint (default = _true_)
+
+* _useCloudScraper_ : _boolean_, if _false_ Cloud Scraper will not be used (default = _true_)
+
+* _auth.key_ : _string_, Bittrex API key (only needed to subscribe to user orders) (not supported by _legacy_ endpoint)
+
+* _auth.secret_ : _string_, Bittrex API secret (only needed to subscribe to user orders) (not supported by _legacy_ endpoint)
+
 * _retryDelay_ : _integer_, delay in milliseconds before reconnecting upon disconnection or connection failure (default = _10000_)
 
 * _retryCount.negotiate_ : _integer_, number of retries in case _negotiate_ step fails (default = _11_) (can be set to string _always_ to retry indefinitely)
@@ -101,6 +109,18 @@ Used to request full order book for a list of pairs. This shouldn't be necessary
 Method _resyncOrderBooks(pairs)_
 
 * _pairs_ : array of pairs to ask full order books for (ex: _['USDT-BTC']_)
+
+## Subscribe to orders
+
+Used to subscribe to orders data (ie: receive events when your orders are being opened, filled, cancelled)
+
+Method _subscribeToOrders()_
+
+## Unsubscribe from orders
+
+Used to unsubscribe from orders feed
+
+Method _unsubscribeFromOrders()_
 
 # Emitted events
 
@@ -334,3 +354,113 @@ _Example_
 ```
 
 _NB_ : _Bittrex_ does not always provide _id_ property for trades so you should consider it as being optional (ie: don't rely on it)
+
+### order
+
+_orderState_ can be one of the following :
+
+* _OPEN_ : order has been created
+* _PARTIAL_ : order has been partially filled and is still open
+* _CANCEL_ : order has been cancelled before being filled (ie: _quantity_ = _remainingQuantity_)
+* _FILL_ : order is closed (it can be filled partially or completely)
+
+#### event when an order has been created
+
+```
+{
+    "pair":"BTC-PTC",
+    "orderNumber":"77c8f585-6d0c-4d5f-a5b0-a3c5abee504e",
+    "data":{
+        "pair":"BTC-PTC",
+        "orderNumber":"77c8f585-6d0c-4d5f-a5b0-a3c5abee504e",
+        "orderState":"OPEN",
+        "orderType":"LIMIT_SELL",
+        "quantity":1000,
+        "remainingQuantity":1000,
+        "openTimestamp":1522765015.517,
+        "targetRate":0.00000406,
+        "targetPrice":0.00406
+    }
+}
+```
+
+#### event when an order has been partially filled
+
+An order will be in state _PARTIAL_ until it is closed in following cases :
+
+* order is completely filled
+* order is cancelled
+
+```
+{
+    "pair":"BTC-PTC",
+    "orderNumber":"77c8f585-6d0c-4d5f-a5b0-a3c5abee504e",
+    "data":{
+        "pair":"BTC-PTC",
+        "orderNumber":"77c8f585-6d0c-4d5f-a5b0-a3c5abee504e",
+        "orderState":"PARTIAL",
+        "orderType":"LIMIT_SELL",
+        "quantity":1000,
+        "remainingQuantity":29.71930944,
+        "openTimestamp":1522765015.517,
+        "targetRate":0.00000406,
+        "targetPrice":0.00406
+    }
+}
+```
+
+#### event when an order has been cancelled
+
+An order will only be in _CANCEL_ state if it was *not filled at all*. In such case :
+
+* _quantity_ = _remainingQuantity_
+* _actualPrice_ = 0
+* _fees_ = 0
+* _actualRate_ = _null_
+
+```
+{
+    "pair":"BTC-PTC",
+    "orderNumber":"0c047f50-de8d-4c9d-841e-88c67bfbc28d",
+    "data":{
+        "pair":"BTC-PTC",
+        "orderNumber":"0c047f50-de8d-4c9d-841e-88c67bfbc28d",
+        "orderState":"CANCEL",
+        "orderType":"LIMIT_SELL",
+        "quantity":1000,
+        "remainingQuantity":1000,
+        "openTimestamp":1522762678.567,
+        "targetRate":0.000008,
+        "targetPrice":0.008,
+        "closedTimestamp":1522762698.473,
+        "actualPrice":0,
+        "fees":0,
+        "actualRate":null
+    }
+}
+```
+
+#### event when an order has been closed after being filled
+
+If an order has been filled (partially or completely), it will be in _FILL_ state. If order has been cancelled while being partially completed _remainingQuantity_ will be _!= 0_
+
+```
+{
+    "pair":"BTC-PTC",
+    "orderNumber":"77c8f585-6d0c-4d5f-a5b0-a3c5abee504e",
+    "data":{
+        "pair":"BTC-PTC",
+        "orderNumber":"77c8f585-6d0c-4d5f-a5b0-a3c5abee504e",
+        "orderState":"FILL",
+        "orderType":"LIMIT_SELL",
+        "quantity":1000,
+        "remainingQuantity":29.71930944,
+        "openTimestamp":1522765015.517,
+        "targetRate":0.00000406,
+        "targetPrice":0.00406,
+        "closedTimestamp":1522765092.253,
+        "actualPrice":0.00393933,
+        "fees":0.00000984,
+        "actualRate":0.00000405
+    }
+}```
