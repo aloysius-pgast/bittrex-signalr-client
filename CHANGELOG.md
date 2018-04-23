@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.1.1]
+* Allows to force re-subscription to orders (Bittrex Beta API)
+* New method to enable logging keepalive messages (node _DEBUG_ must be enabled)
+* Bittrex Beta is over, removed _legacy_ methods
+
 ## [v1.1.0]
 * Support for Bittrex Beta API (tickers, order books, trades & user orders)
 * Possibility to disable Cloud Scraper

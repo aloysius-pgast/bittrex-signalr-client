@@ -114,7 +114,9 @@ Method _resyncOrderBooks(pairs)_
 
 Used to subscribe to orders data (ie: receive events when your orders are being opened, filled, cancelled)
 
-Method _subscribeToOrders()_
+Method _subscribeToOrders(resubscribe)_
+
+* _resubscribe_ : if _true_ client will re-subscribe to exchange, even if a subscription already exists (default = _false_)
 
 ## Unsubscribe from orders
 
