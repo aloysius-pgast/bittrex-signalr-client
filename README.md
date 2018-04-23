@@ -18,7 +18,7 @@ NB : doing REST API calls is outside of the scope of the module. If you need sup
 
 * Handle CloudFare's anti-ddos page using [cloudscaper](https://www.npmjs.com/package/cloudscraper/)
 
-* Support for Bittrex Beta API (tickers, order books, trades & user orders ) (don't forget that it's using Bittrex *beta* API)
+* Support for new Bittrex API (tickers, order books, trades & user orders)
 
 ## Installation
 
