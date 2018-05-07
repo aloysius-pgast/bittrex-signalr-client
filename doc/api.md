@@ -240,7 +240,7 @@ For _tickers_ and _markets_ watchdogs, event will be emitted everytime watchdog 
 
 #### Orders
 
-For _orders_ watchdog, event will be emitted everytime, an _automatic_ re-subscription occurs
+For _orders_ watchdog, event will be emitted everytime, an _automatic_ re-subscription was successful
 
 ```
 {

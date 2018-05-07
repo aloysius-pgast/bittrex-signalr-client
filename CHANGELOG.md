@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.3]
+* Only emit _watchdog_ event for _orders_ if authentication succeeded
+
 ## [v1.1.2]
 * Ensures connection to exchange is always closed when we don't have any subscription remaining
 * New constructor option _watchdog.orders_ to automatically force re-subscriptions for orders periodically
