@@ -387,8 +387,6 @@ _Example_
 }
 ```
 
-_NB_ : _Bittrex_ does not always provide _id_ property for trades so you should consider it as being optional (ie: don't rely on it)
-
 ### order
 
 _orderState_ can be one of the following :
