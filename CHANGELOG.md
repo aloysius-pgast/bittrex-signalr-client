@@ -3,6 +3,7 @@
 ## [v1.1.2]
 * Ensures connection to exchange is always closed when we don't have any subscription remaining
 * New constructor option _watchdog.orders_ to automatically force re-subscriptions for orders periodically
+* Fix method _unsubscribeFromOrders_ (subscription wasn't cancelled)
 
 ## [v1.1.1]
 * Allows to force re-subscription to orders (Bittrex Beta API)
