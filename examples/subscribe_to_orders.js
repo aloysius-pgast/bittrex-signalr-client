@@ -10,10 +10,15 @@ let client = new SignalRClient({
         key:"abcdef",
         secret: "123456"
     },
+    watchdog:{
+        // automatically re-subscribe for orders every 30min (this is enabled by default)
+        orders:{
+            enabled:true,
+            period:1800
+        }
+    },
     // use cloud scraper to bypass Cloud Fare (default)
-    useCloudScraper:true,
-    // subscribing to orders is not supported by legacy endpoint (we need to use the beta API)
-    legacy:false
+    useCloudScraper:true
 });
 
 //-- event handlers

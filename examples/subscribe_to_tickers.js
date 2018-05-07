@@ -5,9 +5,7 @@ let client = new SignalRClient({
     // websocket will be automatically reconnected if server does not respond to ping after 10s
     pingTimeout:10000,
     // use cloud scraper to bypass Cloud Fare (default)
-    useCloudScraper:true,
-    // use legacy endpoint (default) (set to false to use beta endpoint)
-    legacy:true
+    useCloudScraper:true
 });
 
 //-- event handlers

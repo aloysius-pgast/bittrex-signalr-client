@@ -12,9 +12,7 @@ let client = new SignalRClient({
         }
     },
     // use cloud scraper to bypass Cloud Fare (default)
-    useCloudScraper:true,
-    // use legacy endpoint (default) (set to false to use beta endpoint)
-    legacy:true
+    useCloudScraper:true
 });
 
 //-- event handlers
