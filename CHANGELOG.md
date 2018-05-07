@@ -1,5 +1,9 @@
 # Change Log
 
+## [v1.1.2]
+* Ensures connection to exchange is always closed when we don't have any subscription remaining
+* New constructor option _watchdog.orders_ to automatically force re-subscriptions for orders periodically
+
 ## [v1.1.1]
 * Allows to force re-subscription to orders (Bittrex Beta API)
 * New method to enable logging keepalive messages (node _DEBUG_ must be enabled)
