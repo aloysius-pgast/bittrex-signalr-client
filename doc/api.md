@@ -2,13 +2,11 @@
 
 Constructor takes an object as argument with following available properties (all optional)
 
-* _legacy_ : _boolean_, if _false_ will connect to Bittrex beta WSS endpoint (default = _true_)
-
 * _useCloudScraper_ : _boolean_, if _false_ Cloud Scraper will not be used (default = _true_)
 
-* _auth.key_ : _string_, Bittrex API key (only needed to subscribe to user orders) (not supported by _legacy_ endpoint)
+* _auth.key_ : _string_, Bittrex API key (only needed to subscribe to user orders)
 
-* _auth.secret_ : _string_, Bittrex API secret (only needed to subscribe to user orders) (not supported by _legacy_ endpoint)
+* _auth.secret_ : _string_, Bittrex API secret (only needed to subscribe to user orders)
 
 * _retryDelay_ : _integer_, delay in milliseconds before reconnecting upon disconnection or connection failure (default = _10000_)
 
@@ -30,7 +28,13 @@ Constructor takes an object as argument with following available properties (all
 
 * _watchdog.markets.reconnect_ : _boolean_, if true a reconnection will occur upon detecting timeout (default = _true_)
 
+* _watchdog.orders.enabled_ : _boolean_, if true library will re-subscribe for orders periodically (default = _true_)
+
+* _watchdog.orders.period_ : _integer_, delay (in _seconds_) after which re-subscription should be performed (default = _1800_, 30min)
+
 # Watchdog
+
+## Tickers & Markets
 
 When watchdog is enabled, it will only be activated if subscriptions exist. If client unsubscribe from all _markets_ or all _tickers_, it will be automatically disabled and re-enabled once new subscriptions exist
 
@@ -39,6 +43,12 @@ If a watchdog is enabled and _timeout_ is detected, _timeout_ event will be trig
 Watchdog will check for timeout every _timeout / 10_. This means that will be detected between _timeout_ ms and _timeout ms + 10%_.
 
 Do not set timeout value *too low* : setting value to _5 min_ will ensure timeout will be detected between _5 min_ and _5 min 30 sec_, while checking for timeout _every 30 seconds_
+
+## Orders
+
+When _watchdog.orders.enabled_ is _true_, a new subscription for orders will be sent to Bittrex, N seconds (_watchdog.orders.period_) after the last subscription
+
+NB: re-subscription only be triggered if a subscription for orders exist (ie: if _subscribeToOrders_ was called by client)
 
 # Reconnection
 
@@ -206,9 +216,13 @@ When watchdog detected that Bittrex stopped sending data. If _watchdog_ was conf
 
 * _lastTimestamp_ : unix timestamp (in ms) of last received data
 
+NB: will only be sent for _tickers_ & _markets_
+
 ### watchdog
 
-Will be emitted everytime watchdog checks if a timeout occurred
+### Tickers & markets
+
+For _tickers_ and _markets_ watchdogs, event will be emitted everytime watchdog checks if a timeout occurred.
 
 ```
 {
@@ -223,6 +237,24 @@ Will be emitted everytime watchdog checks if a timeout occurred
 * _dataType_ : one of (_tickers_,_markets_)
 
 * _lastTimestamp_ : unix timestamp (in ms) of last received data
+
+#### Orders
+
+For _orders_ watchdog, event will be emitted everytime, an _automatic_ re-subscription occurs
+
+```
+{
+    "connectionId":string,
+    "dataType":string,
+    "lastTimestamp":integer
+}
+```
+
+* _connectionId_ : id of _SignalR_ connection
+
+* _dataType_ : _orders_
+
+* _lastTimestamp_ : unix timestamp (in ms) of last automatic re-subscription
 
 ## Tickers & markets events
 
