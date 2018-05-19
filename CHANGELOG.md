@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.4]
+* Add _trade id_ when emitting _trades_
+
 ## [v1.1.3]
 * Only emit _watchdog_ event for _orders_ if authentication succeeded
 
