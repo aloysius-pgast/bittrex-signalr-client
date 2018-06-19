@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.5]
+* Fix _ticker_ timestamp
+
 ## [v1.1.4]
 * Add _trade id_ when emitting _trades_
 
