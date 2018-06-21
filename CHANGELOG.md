@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.6]
+* Only return trades which were executed after subscription (this means that first 'trades' event will be emitted only when the first trade will be executed after subscription)
+
 ## [v1.1.5]
 * Fix _ticker_ timestamp
 
