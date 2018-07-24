@@ -1,6 +1,6 @@
 {
   "name": "bittrex-signalr-client",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Node.js implementation of SignalR protocol tailored for Bittrex exchange",
   "main": "lib/client.js",
   "scripts": {},

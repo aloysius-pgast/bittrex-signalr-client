@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.8]
+* An error was triggered when calling QueryExchangeState for an unsupported pair
+
 ## [v1.1.7]
 * Fix previous version in case socket is reconnected
 
