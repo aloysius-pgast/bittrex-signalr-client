@@ -32,6 +32,8 @@ Constructor takes an object as argument with following available properties (all
 
 * _watchdog.orders.period_ : _integer_, delay (in _seconds_) after which re-subscription should be performed (default = _1800_, 30min)
 
+* _markNewOrderBookEntriesAsUpdates_ : _boolean_. If set to _false_ new order book entries will have _action_ = _add_ instead of _update_. By default both new entries an updated entries will have _action_ = _update_ in _orderBookUpdate_ event (default = _true_)
+
 # Watchdog
 
 ## Tickers & Markets
@@ -360,6 +362,8 @@ _Example_
     }
 }
 ```
+
+NB : by default _action_ will be set to _update_ for both new entries and updated entries. If you need to distinguish new entries from updated entries, set _markNewOrderBookEntriesAsUpdates_ option to _false_ in constructor
 
 ### trades
 

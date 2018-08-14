@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.1.9]
+* New constructor option _markNewOrderBookEntriesAsUpdates_ can be set to _false_ to have _action_ = _add_ instead of _update_ when a new order book entries are added (default = _true_)
+
 ## [v1.1.8]
 * An error was triggered when calling QueryExchangeState for an unsupported pair
 
