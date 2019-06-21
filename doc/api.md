@@ -34,6 +34,10 @@ Constructor takes an object as argument with following available properties (all
 
 * _markNewOrderBookEntriesAsUpdates_ : _boolean_. If set to _false_ new order book entries will have _action_ = _add_ instead of _update_. By default both new entries an updated entries will have _action_ = _update_ in _orderBookUpdate_ event (default = _true_)
 
+* _exitOnQueryExchangeStateError_ : _boolean_. If set to _true_ library will exit if an error is triggered after calling *QueryExchangeState* (this is mostly for troubleshooting purpose) (default = _false_)
+
+* _resyncOrderBooksAutomatically_ : _boolean_. If set to _true_ order books will be resynced automatically in case a missing *Nounce* is detected triggered after calling *QueryExchangeState* (default = _false_)
+
 # Watchdog
 
 ## Tickers & Markets
@@ -364,6 +368,31 @@ _Example_
 ```
 
 NB : by default _action_ will be set to _update_ for both new entries and updated entries. If you need to distinguish new entries from updated entries, set _markNewOrderBookEntriesAsUpdates_ option to _false_ in constructor
+
+### queryExchangeStateError
+
+Event will be triggered in case an error is trigger after calling *QueryExchangeState* (called when resyncing order books). This usually indicate that a pair is invalid but some users reported getting this error with existing / working pairs
+
+Since subscription will be automatically deleted when an error is triggered after calling *QueryExchangeState*, this event can be used to re-subscribe to the order book
+
+Payload depends on the type of error
+
+* if *Bittrex* returned *nil* data
+```
+{
+    "pair":"USDT-BTC",
+    "type":"nil_data",
+}
+```
+
+* if *Bittrex* returned an error
+```
+{
+    "pair":"USDT-BTC",
+    "type":"error",
+    "error":"There was an error invoking Hub method 'c2.queryexchangestate"
+}
+```
 
 ### trades
 
