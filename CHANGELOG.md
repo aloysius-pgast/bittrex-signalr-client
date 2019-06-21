@@ -1,5 +1,9 @@
 # Change Log
 
+## [v1.1.10] **NOT RELEASED YET**
+* New constructor option _resyncOrderBooksAutomatically_ can be set to _false_ to disable automatic order books resync (default = true). This might be useful when subscribing to many pairs
+* New constructor option _exitOnQueryExchangeStateError_ can be set to _true_ to force library to exit in case an error occurs while trying to resync an order book (mostly for troubleshooting purpose) (default = false)
+
 ## [v1.1.9]
 * New constructor option _markNewOrderBookEntriesAsUpdates_ can be set to _false_ to have _action_ = _add_ instead of _update_ when a new order book entries are added (default = _true_)
 
