@@ -12,6 +12,8 @@ NB : doing REST API calls is outside of the scope of the module. If you need sup
 
 * Implement methods for subscribing to tickers & markets (order books & trades)
 
+* Automatically detect missed order book events and resync automatically by retrieving full order book
+
 * Handle automatic reconnection in (I think !) every possible scenario
 
 * Implements a watchdog to detect when _Bittrex_ stops sending data (default to 30min, automatic reconnection)

@@ -36,7 +36,7 @@ Constructor takes an object as argument with following available properties (all
 
 * _exitOnQueryExchangeStateError_ : _boolean_. If set to _true_ library will exit if an error is triggered after calling *QueryExchangeState* (this is mostly for troubleshooting purpose) (default = _false_)
 
-* _resyncOrderBooksAutomatically_ : _boolean_. If set to _true_ order books will be resynced automatically in case a missing *Nounce* is detected triggered after calling *QueryExchangeState* (default = _false_)
+* _resyncOrderBooksAutomatically_ : _boolean_. If set to _true_ order books will be resynced automatically in case a missing *Nounce* is detected (default = _true_)
 
 # Watchdog
 
@@ -287,6 +287,13 @@ _Example_
 
 ### orderBook
 
+This event contains a **full** order book and is emitted in following cases :
+
+* on first subscription for a given pair
+* when _resyncOrderBooks_ is called or when a missed _Nounce_ has been detected (if _resyncOrderBooksAutomatically_ was set to _true_ in constructor)
+
+Order book events received from *Bittrex* contain a sequence number (_Nounce_) which is incremented by 1 on each event. If library detects that an event has been missed (`{last seq number} - {previous seq number} > 1`), it will resync (retrieve full orderbook) and emit an _orderBook_ event
+
 ```
 {
     "pair":"USDT-BTC",
@@ -333,6 +340,8 @@ _Example_
 ```
 
 ### orderBookUpdate
+
+This event only contains the changes which should be applied to order book
 
 ```
 {
